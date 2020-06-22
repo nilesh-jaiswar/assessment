@@ -35,6 +35,14 @@ Created middle one image
 
 Exercise 2
 
+Q.1) http://localhost/assignment/script/DiskUsage
+
+http://localhost/assignment/script/ssh
+
+http://localhost/assignment/script/scp
+
+http://localhost/assignment/script/fileList
+
 Q.5) File Create_View_query.sql
 
 

@@ -19,7 +19,15 @@ class Script extends CI_Controller {
         }
 
         echo $ssh->exec('pwd') .'<br>';
-        echo $ssh->exec('ls -la');
+    }
+    
+    public function fileList() {
+        $ssh = new Net_SSH2('localhost');
+        if (!$ssh->login('switchme', 'switchme123')) {
+            exit('Login Failed');
+        }
+
+        echo $ssh->exec('ls');
     }
     
     public function DiskUsage() {

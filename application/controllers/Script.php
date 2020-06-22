@@ -13,6 +13,7 @@ class Script extends CI_Controller {
     }
 
     public function ssh() {
+        
         $ssh = new Net_SSH2('localhost');
         if (!$ssh->login('switchme', 'switchme123')) {
             exit('Login Failed');
@@ -22,12 +23,13 @@ class Script extends CI_Controller {
     }
     
     public function fileList() {
+        
         $ssh = new Net_SSH2('localhost');
         if (!$ssh->login('switchme', 'switchme123')) {
             exit('Login Failed');
         }
-
-        echo $ssh->exec('ls');
+        echo '<pre>';
+        echo $ssh->exec('ls -la');
     }
     
     public function DiskUsage() {
@@ -40,14 +42,25 @@ class Script extends CI_Controller {
 
     public function scp() {
 
-        $hostname = "localhost";
-        $username = "switchme";
-        $password = "switchme123";
-        $sourceFile = "/var/www/html/aa/a.txt";
-        $targetFile = "/var/www/html/a.txt";
-        $connection = ssh2_connect($hostname, 22);
-        ssh2_auth_password($connection, $username, $password);
-        ssh2_scp_send($connection, $sourceFile, $targetFile, 0777);
+        $ssh = new Net_SSH2('localhost');
+        if (!$ssh->login('switchme', 'switchme123')) {
+            exit('Login Failed');
+        }
+
+        $scp = new Net_SCP($ssh);
+        if (!$scp->put('/var/www/html/aa/a.txt', '/var/www/html/a.txt', NET_SCP_LOCAL_FILE)) {
+            throw new Exception("Failed to send file");
+        }
+    }
+    
+    public function inode() {
+
+        $ssh = new Net_SSH2('localhost');
+        if (!$ssh->login('switchme', 'switchme123')) {
+            exit('Login Failed');
+        }
+        echo '<pre>';
+        echo $ssh->exec('df -i');
     }
 
 }

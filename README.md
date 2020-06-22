@@ -43,6 +43,8 @@ http://localhost/assignment/script/scp
 
 http://localhost/assignment/script/fileList
 
+http://localhost/assignment/script/inode
+
 Q.5) File Create_View_query.sql
 
 

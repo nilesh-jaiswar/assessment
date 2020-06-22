@@ -56,3 +56,10 @@ $route['translate_uri_dashes'] = FALSE;
 $route['insert'] = 'home/insertRoute';
 $route['show'] = 'home/getAllData';
 $route['delete'] = 'home/deleteRoute';
+
+
+$route['insert-api'] = 'api/insertApi';
+$route['update-by-ip'] = 'api/updateByIP';
+$route['get-by-sapid'] = 'api/getDataBySapid';
+$route['get-by-ip-range'] = 'api/getDataByIpRange';
+$route['delete-by-ip'] = 'api/deleteByIP';

@@ -33,4 +33,18 @@ Created middle one image
 
 
 
+Exercise 2
 
+Q.5) File Create_View_query.sql
+
+
+
+
+
+Exercise 3
+
+Q.1)  Api Controller where all the Apis are written
+
+Q.2) ApiCalls Controller where all the curl calls to above APIs are writen
+
+Note: All the APIs tested on Postman. Created Simple APIs, not used any token based authentication due to less time.

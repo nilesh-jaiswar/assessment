@@ -140,5 +140,7 @@ $('.route-body').on('click', '.editRecord', function () {
     $('input[name=hostname]').val($(this).data('hostname'));
     $('input[name=loopback]').val($(this).data('loopback'));
     $('input[name=mac_address]').val($(this).data('mac_address'));
+    
+    $('input[name=sapid]').focus();
 
 });

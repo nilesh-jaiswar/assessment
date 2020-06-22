@@ -2,23 +2,44 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require 'vendor/autoload.php';
+
 class Script extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('homeModel');
+
+        error_reporting(E_ALL);
     }
 
-//    View on query
-//    CREATE VIEW route AS
-//    SELECT te.`sapid`, te.`hostname`, te.`loopback`, te.`mac_address` FROM `crud`.`route_details` te
-//    WHERE te.`dummy`= 1;
-//    
     public function ssh() {
-        $connection = ssh2_connect('shell.example.com', 22);
-        ssh2_auth_password($connection, 'username', 'password');
+        $ssh = new Net_SSH2('localhost');
+        if (!$ssh->login('switchme', 'switchme123')) {
+            exit('Login Failed');
+        }
 
-        $stream = ssh2_exec($connection, '/usr/local/bin/php -i');
+        echo $ssh->exec('pwd') .'<br>';
+        echo $ssh->exec('ls -la');
     }
     
+    public function DiskUsage() {
+        
+        $size =  disk_free_space('/');
+        
+        echo number_format($size/1000000000, 2) . " GB";
+        
+    }
+
+    public function scp() {
+
+        $hostname = "localhost";
+        $username = "switchme";
+        $password = "switchme123";
+        $sourceFile = "/var/www/html/aa/a.txt";
+        $targetFile = "/var/www/html/a.txt";
+        $connection = ssh2_connect($hostname, 22);
+        ssh2_auth_password($connection, $username, $password);
+        ssh2_scp_send($connection, $sourceFile, $targetFile, 0777);
+    }
+
 }
